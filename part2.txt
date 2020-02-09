@@ -1,0 +1,192 @@
+第一节：
+
+![image-20200208230859060](/Users/dylan/Library/Application Support/typora-user-images/image-20200208230859060.png)
+
+
+
+## 数据库设计
+
+```java
+CREATE TABLE miaosha_user (
+  `id` bigint(20) NOT NULL COMMENT '用户ID，手机号码',
+  `nickname` varchar(255) NOT NULL,
+  `password` varchar(32) DEFAULT NULL COMMENT 'MD5(MD5(pass明文+固定salt) + salt)',
+  `salt` varchar(10) DEFAULT NULL,
+  `head` varchar(128) DEFAULT NULL COMMENT '头像，云存储的ID',
+  `register_date` datetime DEFAULT NULL COMMENT '注册时间',
+  `last_login_date` datetime DEFAULT NULL COMMENT '上蔟登录时间',
+  `login_count` int(11) DEFAULT '0' COMMENT '登录次数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+```
+
+2. 两次MD5：引入MD5工具类，添加MD5Util
+
+  http是明文登录的,不安全
+
+  - 首先客户端 md5 再传输给服务端
+  - 服务端接受到之后+salt再md5,写入到数据库当中(防止数据库被盗)
+
+  ```xml
+  <dependency>
+   <groupId>commons-codec</groupId>
+   <artifactId>commons-codec</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>org.apache.commons</groupId>
+   <artifactId>commons-lang3</artifactId>
+   <version>3.6</version>
+  </dependency>
+  ```
+
+  
+
+  
+
+## part 2
+
+1. 编写login.html
+
+2.  引入jquery.js、bootstrap、jquery-validation、layer.js
+
+   b:画页面
+   j:form验证
+   layer:弹框
+   Js:md5
+
+   ```xml
+   <!-- jquery -->
+   	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+   <!-- bootstrap -->
+   	<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+   	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+   <!-- jquery-validator -->
+   	<script type="text/javascript" th:src="@{/jquery-validation/jquery.validate.min.js}"></script>
+   	<script type="text/javascript" th:src="@{/jquery-validation/localization/messages_zh.min.js}"></script>
+   <!-- layer -->
+   	<script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+   <!-- md5.js -->
+   	<script type="text/javascript" th:src="@{/js/md5.min.js}"></script>
+   <!-- common.js -->
+   	<script type="text/javascript" th:src="@{/js/common.js}"></script>
+   
+   <form name="loginForm" id="loginForm" method="post" >
+   	<h2 style="text-align:center; margin-bottom: 20px">用户登录</h2>
+   	<div class="form-group">
+          	<div class="row">
+   	       	<label class="form-label col-md-4">请输入手机号码</label>
+   	        <div class="col-md-5">
+   	        	<input id="mobile" name = "mobile" class="form-control" type="text" placeholder="手机号码" required="true"  minlength="11" maxlength="11" />
+   	    	</div>
+   	    	<div class="col-md-1">
+   	    	</div>
+       	</div>
+       </div>
+       <div class="form-group">
+        		<div class="row">
+   		        <label class="form-label col-md-4">请输入密码</label>
+   		        <div class="col-md-5">
+   		        	<input id="password" name="password" class="form-control" type="password"  placeholder="密码" required="true" minlength="6" maxlength="16" />
+   	       		</div>
+         		</div>
+   	</div>
+   	<div class="row">
+   		     	<div class="col-md-5">
+   	       	 		<button class="btn btn-primary btn-block" type="reset" onclick="reset()">重置</button>
+   	       	 	</div>
+   	       	 	<div class="col-md-5">
+   	       	 		<button class="btn btn-primary btn-block" type="submit" onclick="login()">登录</button>
+   	       	 	</div>
+   	 </div>
+   </form>
+   ```
+
+   
+
+
+
+function login(){
+$('#loginForm').validate({
+        submitHandler:function(form){
+            doLogin();
+        }    
+    });
+}
+function doLogin(){
+	g_showLoading();
+	var pass = md5(g_passsword_salt.charAt(0)+g_passsword_salt.charAt(7)+$("#password").val()+g_passsword_salt.charAt(4)+g_passsword_salt.charAt(3))
+	console.log(pass)
+	$.ajax({  
+        type : "POST",  
+        url :  "/login/do_login",  
+        data : {
+        	"mobile":$("#mobile").val(),
+        	"password":pass
+        },
+        success : function(data){  
+        	layer.closeAll();
+        	if(data.code == 0){
+        		layer.msg("登录成功",{time: 1000},function(){
+        			window.location.href="/goods/to_list";
+        		});
+        	}else{
+        		alert(data.msg);
+        	}
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        	layer.closeAll();
+        	alert("异常");
+        }
+	}); 
+}
+public class MiaoshaUser {
+	private Long id;
+	private String nickname;
+	private String password;
+	private String salt;
+	private String head;
+	private Date registerDate;
+	private Date lastLoginDate;
+	private Integer loginCount;
+}
+
+第三节：
+4.引入spring-boot-starter-validation
+自定义参数校验器+全局异常处理器 
+<dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+@Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD})  
+@Retention(RetentionPolicy.RUNTIME)  
+@Documented  
+@Constraint(validatedBy = IsMobileValidator.class)
+public @interface IsMobile {
+    String message() default "手机号码格式有误";  
+    Class<?>[] groups() default {};  
+    Class<? extends Payload>[] payload() default {};  
+    boolean required() default true;
+}
+public class IsMobileValidator implements ConstraintValidator<IsMobile, String>{
+}
+
+@ControllerAdvice
+@ResponseBody
+public class GlobalExceptionHandler {
+    @ExceptionHandler(value=Exception.class)  
+    public Result<String> allExceptionHandler(HttpServletRequest request, Exception exception) throws Exception{  
+    }
+}
+第四节：
+6.分布式Session
+
+
+
+
+
+
+
+
