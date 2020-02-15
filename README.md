@@ -53,3 +53,269 @@ git clone git@github.com:Mercurioooo/miaosha.git
 4. [商城秒杀系统的实现(四)页面级高并发秒杀优化](https://editor.csdn.net/md/?articleId=104333300)
 5. [商城秒杀系统的实现(五)服务级高并发秒杀优化](https://editor.csdn.net/md/?articleId=104332912)
 
+## 目录
+miaosha6
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── pro
+│   │   │           └── miaosha
+│   │   │               ├── MainApplication.java
+│   │   │               ├── config
+│   │   │               │   ├── UserArgumentResolver.java
+│   │   │               │   └── WebConfig.java
+│   │   │               ├── controller
+│   │   │               │   ├── DemoController.java
+│   │   │               │   ├── GoodsController.java
+│   │   │               │   ├── LoginController.java
+│   │   │               │   ├── MiaoshaController.java
+│   │   │               │   └── OrderController.java
+│   │   │               ├── dao
+│   │   │               │   ├── GoodsDao.java
+│   │   │               │   ├── MiaoshaUserDao.java
+│   │   │               │   ├── OrderDao.java
+│   │   │               │   └── UserDao.java
+│   │   │               ├── domain
+│   │   │               │   ├── Goods.java
+│   │   │               │   ├── MiaoshaGoods.java
+│   │   │               │   ├── MiaoshaOrder.java
+│   │   │               │   ├── MiaoshaUser.java
+│   │   │               │   ├── OrderInfo.java
+│   │   │               │   └── User.java
+│   │   │               ├── exception
+│   │   │               │   ├── GlobalException.java
+│   │   │               │   └── GlobalExceptionHandler.java
+│   │   │               ├── rabbitmq
+│   │   │               │   ├── MQConfig.java
+│   │   │               │   ├── MQReceiver.java
+│   │   │               │   ├── MQSender.java
+│   │   │               │   └── MiaoshaMessage.java
+│   │   │               ├── redis
+│   │   │               │   ├── BasePrefix.java
+│   │   │               │   ├── GoodsKey.java
+│   │   │               │   ├── KeyPrefix.java
+│   │   │               │   ├── MiaoshaKey.java
+│   │   │               │   ├── MiaoshaUserKey.java
+│   │   │               │   ├── OrderKey.java
+│   │   │               │   ├── RedisConfig.java
+│   │   │               │   ├── RedisPoolFactory.java
+│   │   │               │   ├── RedisService.java
+│   │   │               │   └── UserKey.java
+│   │   │               ├── result
+│   │   │               │   ├── CodeMsg.java
+│   │   │               │   └── Result.java
+│   │   │               ├── service
+│   │   │               │   ├── GoodsService.java
+│   │   │               │   ├── MiaoshaService.java
+│   │   │               │   ├── MiaoshaUserService.java
+│   │   │               │   ├── OrderService.java
+│   │   │               │   └── UserService.java
+│   │   │               ├── util
+│   │   │               │   ├── MD5Util.java
+│   │   │               │   ├── UUIDUtil.java
+│   │   │               │   └── ValidatorUtil.java
+│   │   │               ├── validator
+│   │   │               │   ├── IsMobile.java
+│   │   │               │   └── IsMobileValidator.java
+│   │   │               └── vo
+│   │   │                   ├── GoodsDetailVo.java
+│   │   │                   ├── GoodsVo.java
+│   │   │                   ├── LoginVo.java
+│   │   │                   └── OrderDetailVo.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       ├── static
+│   │       │   ├── bootstrap
+│   │       │   │   ├── css
+│   │       │   │   │   ├── bootstrap-theme.css
+│   │       │   │   │   ├── bootstrap-theme.css.map
+│   │       │   │   │   ├── bootstrap-theme.min.css
+│   │       │   │   │   ├── bootstrap-theme.min.css.map
+│   │       │   │   │   ├── bootstrap.css
+│   │       │   │   │   ├── bootstrap.css.map
+│   │       │   │   │   ├── bootstrap.min.css
+│   │       │   │   │   └── bootstrap.min.css.map
+│   │       │   │   ├── fonts
+│   │       │   │   │   ├── glyphicons-halflings-regular.eot
+│   │       │   │   │   ├── glyphicons-halflings-regular.svg
+│   │       │   │   │   ├── glyphicons-halflings-regular.ttf
+│   │       │   │   │   ├── glyphicons-halflings-regular.woff
+│   │       │   │   │   └── glyphicons-halflings-regular.woff2
+│   │       │   │   └── js
+│   │       │   │       ├── bootstrap.js
+│   │       │   │       ├── bootstrap.min.js
+│   │       │   │       └── npm.js
+│   │       │   ├── goods_detail.htm
+│   │       │   ├── img
+│   │       │   │   ├── iphonex.png
+│   │       │   │   └── meta10.png
+│   │       │   ├── jquery-validation
+│   │       │   │   ├── additional-methods.min.js
+│   │       │   │   ├── jquery.validate.min.js
+│   │       │   │   └── localization
+│   │       │   │       └── messages_zh.min.js
+│   │       │   ├── js
+│   │       │   │   ├── common.js
+│   │       │   │   ├── jquery.min.js
+│   │       │   │   └── md5.min.js
+│   │       │   ├── layer
+│   │       │   │   ├── layer.js
+│   │       │   │   ├── mobile
+│   │       │   │   │   ├── layer.js
+│   │       │   │   │   └── need
+│   │       │   │   │       └── layer.css
+│   │       │   │   └── skin
+│   │       │   │       └── default
+│   │       │   │           ├── icon-ext.png
+│   │       │   │           ├── icon.png
+│   │       │   │           ├── layer.css
+│   │       │   │           ├── loading-0.gif
+│   │       │   │           ├── loading-1.gif
+│   │       │   │           └── loading-2.gif
+│   │       │   └── order_detail.htm
+│   │       └── templates
+│   │           ├── goods_detail.html
+│   │           ├── goods_list.html
+│   │           ├── hello.html
+│   │           ├── login.html
+│   │           ├── miaosha_fail.html
+│   │           └── order_detail.html
+│   └── test
+└── target
+    ├── classes
+    │   ├── META-INF
+    │   │   ├── MANIFEST.MF
+    │   │   └── maven
+    │   │       └── com.pro.
+    │   │           └── miaosha
+    │   │               ├── pom.properties
+    │   │               └── pom.xml
+    │   ├── application.properties
+    │   ├── com
+    │   │   └── pro
+    │   │       └── miaosha
+    │   │           ├── MainApplication.class
+    │   │           ├── config
+    │   │           │   ├── UserArgumentResolver.class
+    │   │           │   └── WebConfig.class
+    │   │           ├── controller
+    │   │           │   ├── DemoController.class
+    │   │           │   ├── GoodsController.class
+    │   │           │   ├── LoginController.class
+    │   │           │   ├── MiaoshaController.class
+    │   │           │   └── OrderController.class
+    │   │           ├── dao
+    │   │           │   ├── GoodsDao.class
+    │   │           │   ├── MiaoshaUserDao.class
+    │   │           │   ├── OrderDao.class
+    │   │           │   └── UserDao.class
+    │   │           ├── domain
+    │   │           │   ├── Goods.class
+    │   │           │   ├── MiaoshaGoods.class
+    │   │           │   ├── MiaoshaOrder.class
+    │   │           │   ├── MiaoshaUser.class
+    │   │           │   ├── OrderInfo.class
+    │   │           │   └── User.class
+    │   │           ├── exception
+    │   │           │   ├── GlobalException.class
+    │   │           │   └── GlobalExceptionHandler.class
+    │   │           ├── rabbitmq
+    │   │           │   ├── MQConfig.class
+    │   │           │   ├── MQReceiver.class
+    │   │           │   ├── MQSender.class
+    │   │           │   └── MiaoshaMessage.class
+    │   │           ├── redis
+    │   │           │   ├── BasePrefix.class
+    │   │           │   ├── GoodsKey.class
+    │   │           │   ├── KeyPrefix.class
+    │   │           │   ├── MiaoshaKey.class
+    │   │           │   ├── MiaoshaUserKey.class
+    │   │           │   ├── OrderKey.class
+    │   │           │   ├── RedisConfig.class
+    │   │           │   ├── RedisPoolFactory.class
+    │   │           │   ├── RedisService.class
+    │   │           │   └── UserKey.class
+    │   │           ├── result
+    │   │           │   ├── CodeMsg.class
+    │   │           │   └── Result.class
+    │   │           ├── service
+    │   │           │   ├── GoodsService.class
+    │   │           │   ├── MiaoshaService.class
+    │   │           │   ├── MiaoshaUserService.class
+    │   │           │   ├── OrderService.class
+    │   │           │   └── UserService.class
+    │   │           ├── util
+    │   │           │   ├── MD5Util.class
+    │   │           │   ├── UUIDUtil.class
+    │   │           │   └── ValidatorUtil.class
+    │   │           ├── validator
+    │   │           │   ├── IsMobile.class
+    │   │           │   └── IsMobileValidator.class
+    │   │           └── vo
+    │   │               ├── GoodsDetailVo.class
+    │   │               ├── GoodsVo.class
+    │   │               ├── LoginVo.class
+    │   │               └── OrderDetailVo.class
+    │   ├── static
+    │   │   ├── bootstrap
+    │   │   │   ├── css
+    │   │   │   │   ├── bootstrap-theme.css
+    │   │   │   │   ├── bootstrap-theme.css.map
+    │   │   │   │   ├── bootstrap-theme.min.css
+    │   │   │   │   ├── bootstrap-theme.min.css.map
+    │   │   │   │   ├── bootstrap.css
+    │   │   │   │   ├── bootstrap.css.map
+    │   │   │   │   ├── bootstrap.min.css
+    │   │   │   │   └── bootstrap.min.css.map
+    │   │   │   ├── fonts
+    │   │   │   │   ├── glyphicons-halflings-regular.eot
+    │   │   │   │   ├── glyphicons-halflings-regular.svg
+    │   │   │   │   ├── glyphicons-halflings-regular.ttf
+    │   │   │   │   ├── glyphicons-halflings-regular.woff
+    │   │   │   │   └── glyphicons-halflings-regular.woff2
+    │   │   │   └── js
+    │   │   │       ├── bootstrap.js
+    │   │   │       ├── bootstrap.min.js
+    │   │   │       └── npm.js
+    │   │   ├── goods_detail.htm
+    │   │   ├── img
+    │   │   │   ├── iphonex.png
+    │   │   │   └── meta10.png
+    │   │   ├── jquery-validation
+    │   │   │   ├── additional-methods.min.js
+    │   │   │   ├── jquery.validate.min.js
+    │   │   │   └── localization
+    │   │   │       └── messages_zh.min.js
+    │   │   ├── js
+    │   │   │   ├── common.js
+    │   │   │   ├── jquery.min.js
+    │   │   │   └── md5.min.js
+    │   │   ├── layer
+    │   │   │   ├── layer.js
+    │   │   │   ├── mobile
+    │   │   │   │   ├── layer.js
+    │   │   │   │   └── need
+    │   │   │   │       └── layer.css
+    │   │   │   └── skin
+    │   │   │       └── default
+    │   │   │           ├── icon-ext.png
+    │   │   │           ├── icon.png
+    │   │   │           ├── layer.css
+    │   │   │           ├── loading-0.gif
+    │   │   │           ├── loading-1.gif
+    │   │   │           └── loading-2.gif
+    │   │   └── order_detail.htm
+    │   └── templates
+    │       ├── goods_detail.html
+    │       ├── goods_list.html
+    │       ├── hello.html
+    │       ├── login.html
+    │       ├── miaosha_fail.html
+    │       └── order_detail.html
+    └── test-classes
+        └── com
+            └── pro
+                └── miaosha
+                    └── AppTest.class
