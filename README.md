@@ -54,6 +54,7 @@ git clone git@github.com:Mercurioooo/miaosha.git
 5. [商城秒杀系统的实现(五)服务级高并发秒杀优化](https://editor.csdn.net/md/?articleId=104332912)
 
 ## 目录
+```
 miaosha6
 ├── pom.xml
 ├── src
@@ -315,7 +316,4 @@ miaosha6
     │       ├── miaosha_fail.html
     │       └── order_detail.html
     └── test-classes
-        └── com
-            └── pro
-                └── miaosha
-                    └── AppTest.class
+```
