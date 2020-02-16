@@ -20,18 +20,18 @@ Java实现的秒杀网站，基于Spring Boot 2.X。
 git clone git@github.com:Mercurioooo/miaosha.git
 ```
 
-- 在Intelij IDEA/eclipse里导入根路径下的pom.xml，再导入文件夹jseckill-backend下面的pom.xml, 等待maven依赖下载完毕 详细操作：
+- 在Intelij IDEA/eclipse里导入根路径下的pom.xml 等待maven依赖下载完毕 详细操作：
 
-**如果是IDEA**，先IDEA | File | Open...，选择jseckill根路径下的pom文件, Open as project以导入根项目jseckill。
+**如果是IDEA**，先IDEA | File | Open...，选择根路径下的pom文件, Open as project以导入根项目。
 
-操作菜单栏 View | Tool Windows | Maven Projects。 点击"+"， 添加jseckill-backend下面的pom。
+操作菜单栏 View | Tool Windows | Maven Projects。 点击"+"， 添加pom。
 
-此时Maven Projects下面有根项目jseckill和jseckill-backend。
+此时Maven Projects下面有根项目miaosha。
 
-**如果是Eclipse**, import导入maven项目，勾选jseckil和jseckill-backend下面共两个pom文件即可。
+**如果是Eclipse**, import导入maven项目，勾选pom文件即可。
 
-- 修改application.properties里面的自己的Redis,MySQL,Zookeeper,RabbitMQ的连接配置
-- 右键JseckillBackendApp.java--run as--Java Application
+- 修改application.properties里面的自己的Redis,MySQL,RabbitMQ的连接配置
+- 右键MainApplication.java--run as--Java Application
 
 ## 原理
 
@@ -130,51 +130,13 @@ miaosha6
 │   │       ├── static
 │   │       │   ├── bootstrap
 │   │       │   │   ├── css
-│   │       │   │   │   ├── bootstrap-theme.css
-│   │       │   │   │   ├── bootstrap-theme.css.map
-│   │       │   │   │   ├── bootstrap-theme.min.css
-│   │       │   │   │   ├── bootstrap-theme.min.css.map
-│   │       │   │   │   ├── bootstrap.css
-│   │       │   │   │   ├── bootstrap.css.map
-│   │       │   │   │   ├── bootstrap.min.css
-│   │       │   │   │   └── bootstrap.min.css.map
 │   │       │   │   ├── fonts
-│   │       │   │   │   ├── glyphicons-halflings-regular.eot
-│   │       │   │   │   ├── glyphicons-halflings-regular.svg
-│   │       │   │   │   ├── glyphicons-halflings-regular.ttf
-│   │       │   │   │   ├── glyphicons-halflings-regular.woff
-│   │       │   │   │   └── glyphicons-halflings-regular.woff2
 │   │       │   │   └── js
-│   │       │   │       ├── bootstrap.js
-│   │       │   │       ├── bootstrap.min.js
-│   │       │   │       └── npm.js
 │   │       │   ├── goods_detail.htm
 │   │       │   ├── img
-│   │       │   │   ├── iphonex.png
-│   │       │   │   └── meta10.png
 │   │       │   ├── jquery-validation
-│   │       │   │   ├── additional-methods.min.js
-│   │       │   │   ├── jquery.validate.min.js
-│   │       │   │   └── localization
-│   │       │   │       └── messages_zh.min.js
 │   │       │   ├── js
-│   │       │   │   ├── common.js
-│   │       │   │   ├── jquery.min.js
-│   │       │   │   └── md5.min.js
 │   │       │   ├── layer
-│   │       │   │   ├── layer.js
-│   │       │   │   ├── mobile
-│   │       │   │   │   ├── layer.js
-│   │       │   │   │   └── need
-│   │       │   │   │       └── layer.css
-│   │       │   │   └── skin
-│   │       │   │       └── default
-│   │       │   │           ├── icon-ext.png
-│   │       │   │           ├── icon.png
-│   │       │   │           ├── layer.css
-│   │       │   │           ├── loading-0.gif
-│   │       │   │           ├── loading-1.gif
-│   │       │   │           └── loading-2.gif
 │   │       │   └── order_detail.htm
 │   │       └── templates
 │   │           ├── goods_detail.html
@@ -185,135 +147,4 @@ miaosha6
 │   │           └── order_detail.html
 │   └── test
 └── target
-    ├── classes
-    │   ├── META-INF
-    │   │   ├── MANIFEST.MF
-    │   │   └── maven
-    │   │       └── com.pro.
-    │   │           └── miaosha
-    │   │               ├── pom.properties
-    │   │               └── pom.xml
-    │   ├── application.properties
-    │   ├── com
-    │   │   └── pro
-    │   │       └── miaosha
-    │   │           ├── MainApplication.class
-    │   │           ├── config
-    │   │           │   ├── UserArgumentResolver.class
-    │   │           │   └── WebConfig.class
-    │   │           ├── controller
-    │   │           │   ├── DemoController.class
-    │   │           │   ├── GoodsController.class
-    │   │           │   ├── LoginController.class
-    │   │           │   ├── MiaoshaController.class
-    │   │           │   └── OrderController.class
-    │   │           ├── dao
-    │   │           │   ├── GoodsDao.class
-    │   │           │   ├── MiaoshaUserDao.class
-    │   │           │   ├── OrderDao.class
-    │   │           │   └── UserDao.class
-    │   │           ├── domain
-    │   │           │   ├── Goods.class
-    │   │           │   ├── MiaoshaGoods.class
-    │   │           │   ├── MiaoshaOrder.class
-    │   │           │   ├── MiaoshaUser.class
-    │   │           │   ├── OrderInfo.class
-    │   │           │   └── User.class
-    │   │           ├── exception
-    │   │           │   ├── GlobalException.class
-    │   │           │   └── GlobalExceptionHandler.class
-    │   │           ├── rabbitmq
-    │   │           │   ├── MQConfig.class
-    │   │           │   ├── MQReceiver.class
-    │   │           │   ├── MQSender.class
-    │   │           │   └── MiaoshaMessage.class
-    │   │           ├── redis
-    │   │           │   ├── BasePrefix.class
-    │   │           │   ├── GoodsKey.class
-    │   │           │   ├── KeyPrefix.class
-    │   │           │   ├── MiaoshaKey.class
-    │   │           │   ├── MiaoshaUserKey.class
-    │   │           │   ├── OrderKey.class
-    │   │           │   ├── RedisConfig.class
-    │   │           │   ├── RedisPoolFactory.class
-    │   │           │   ├── RedisService.class
-    │   │           │   └── UserKey.class
-    │   │           ├── result
-    │   │           │   ├── CodeMsg.class
-    │   │           │   └── Result.class
-    │   │           ├── service
-    │   │           │   ├── GoodsService.class
-    │   │           │   ├── MiaoshaService.class
-    │   │           │   ├── MiaoshaUserService.class
-    │   │           │   ├── OrderService.class
-    │   │           │   └── UserService.class
-    │   │           ├── util
-    │   │           │   ├── MD5Util.class
-    │   │           │   ├── UUIDUtil.class
-    │   │           │   └── ValidatorUtil.class
-    │   │           ├── validator
-    │   │           │   ├── IsMobile.class
-    │   │           │   └── IsMobileValidator.class
-    │   │           └── vo
-    │   │               ├── GoodsDetailVo.class
-    │   │               ├── GoodsVo.class
-    │   │               ├── LoginVo.class
-    │   │               └── OrderDetailVo.class
-    │   ├── static
-    │   │   ├── bootstrap
-    │   │   │   ├── css
-    │   │   │   │   ├── bootstrap-theme.css
-    │   │   │   │   ├── bootstrap-theme.css.map
-    │   │   │   │   ├── bootstrap-theme.min.css
-    │   │   │   │   ├── bootstrap-theme.min.css.map
-    │   │   │   │   ├── bootstrap.css
-    │   │   │   │   ├── bootstrap.css.map
-    │   │   │   │   ├── bootstrap.min.css
-    │   │   │   │   └── bootstrap.min.css.map
-    │   │   │   ├── fonts
-    │   │   │   │   ├── glyphicons-halflings-regular.eot
-    │   │   │   │   ├── glyphicons-halflings-regular.svg
-    │   │   │   │   ├── glyphicons-halflings-regular.ttf
-    │   │   │   │   ├── glyphicons-halflings-regular.woff
-    │   │   │   │   └── glyphicons-halflings-regular.woff2
-    │   │   │   └── js
-    │   │   │       ├── bootstrap.js
-    │   │   │       ├── bootstrap.min.js
-    │   │   │       └── npm.js
-    │   │   ├── goods_detail.htm
-    │   │   ├── img
-    │   │   │   ├── iphonex.png
-    │   │   │   └── meta10.png
-    │   │   ├── jquery-validation
-    │   │   │   ├── additional-methods.min.js
-    │   │   │   ├── jquery.validate.min.js
-    │   │   │   └── localization
-    │   │   │       └── messages_zh.min.js
-    │   │   ├── js
-    │   │   │   ├── common.js
-    │   │   │   ├── jquery.min.js
-    │   │   │   └── md5.min.js
-    │   │   ├── layer
-    │   │   │   ├── layer.js
-    │   │   │   ├── mobile
-    │   │   │   │   ├── layer.js
-    │   │   │   │   └── need
-    │   │   │   │       └── layer.css
-    │   │   │   └── skin
-    │   │   │       └── default
-    │   │   │           ├── icon-ext.png
-    │   │   │           ├── icon.png
-    │   │   │           ├── layer.css
-    │   │   │           ├── loading-0.gif
-    │   │   │           ├── loading-1.gif
-    │   │   │           └── loading-2.gif
-    │   │   └── order_detail.htm
-    │   └── templates
-    │       ├── goods_detail.html
-    │       ├── goods_list.html
-    │       ├── hello.html
-    │       ├── login.html
-    │       ├── miaosha_fail.html
-    │       └── order_detail.html
-    └── test-classes
 ```
