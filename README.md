@@ -6,7 +6,7 @@ Java实现的秒杀网站，基于Spring Boot 2.X。
 
 ## 技术栈
 
-- SpringBoot2.0.1 + MyBatis + MySQL + Durid
+- SpringBoot2.0.1 + MyBatis + MySQL
 - Redis + RabbitMQ
 - BootStrap + Thymeleaf
 - JSR303参数校验 + 全局异常处理器
