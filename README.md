@@ -47,11 +47,11 @@ git clone git@github.com:Mercurioooo/miaosha.git
 
 ## 具体的技术点
 
-1. [商城秒杀系统的实现(一)搭建项目框架](https://editor.csdn.net/md/?articleId=104331179)
-2. [商城秒杀系统的实现(二)实现登录功能](https://editor.csdn.net/md/?articleId=104331322)
-3. [商城秒杀系统的实现(三)秒杀功能开发及管理后台](https://editor.csdn.net/md/?articleId=104332117)
-4. [商城秒杀系统的实现(四)页面级高并发秒杀优化](https://editor.csdn.net/md/?articleId=104333300)
-5. [商城秒杀系统的实现(五)服务级高并发秒杀优化](https://editor.csdn.net/md/?articleId=104332912)
+1. [商城秒杀系统的实现(一)搭建项目框架](https://blog.csdn.net/Mercuriooo/article/details/104331179)
+2. [商城秒杀系统的实现(二)实现登录功能](https://blog.csdn.net/Mercuriooo/article/details/104331322)
+3. [商城秒杀系统的实现(三)秒杀功能开发及管理后台](https://blog.csdn.net/Mercuriooo/article/details/104332117)
+4. [商城秒杀系统的实现(四)页面级高并发秒杀优化](https://blog.csdn.net/Mercuriooo/article/details/104332117)
+5. [商城秒杀系统的实现(五)服务级高并发秒杀优化](https://blog.csdn.net/Mercuriooo/article/details/104332912)
 
 ## 目录
 ```
