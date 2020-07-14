@@ -1,8 +1,8 @@
-# 秒杀系统的实现
+# 火车抢票系统的实现
 
 ## 介绍
 
-Java实现的秒杀网站，基于Spring Boot 2.X。
+Java实现的火车抢票系统，基于Spring Boot 2.X。
 
 ## 技术栈
 
@@ -41,17 +41,17 @@ git clone git@github.com:Mercurioooo/miaosha.git
 4. RabbitMQ队列缓冲异步下单
 5. Redis预减库存
 6. 内存标记 **安全优化**
-7. 秒杀地址隐藏
+7. 地址隐藏
 8. 数学公式验证码缓冲
 9. 接口的防刷限流
 
 ## 具体的技术点
 
-1. [商城秒杀系统的实现(一)搭建项目框架](https://blog.csdn.net/Mercuriooo/article/details/104331179)
-2. [商城秒杀系统的实现(二)实现登录功能](https://blog.csdn.net/Mercuriooo/article/details/104331322)
-3. [商城秒杀系统的实现(三)秒杀功能开发及管理后台](https://blog.csdn.net/Mercuriooo/article/details/104332117)
-4. [商城秒杀系统的实现(四)页面级高并发秒杀优化](https://blog.csdn.net/Mercuriooo/article/details/104332117)
-5. [商城秒杀系统的实现(五)服务级高并发秒杀优化](https://blog.csdn.net/Mercuriooo/article/details/104332912)
+1. [火车抢票系统的实现(一)搭建项目框架](https://blog.csdn.net/Mercuriooo/article/details/104331179)
+2. [火车抢票系统的实现(二)实现登录功能](https://blog.csdn.net/Mercuriooo/article/details/104331322)
+3. [火车抢票系统的实现(三)秒杀功能开发及管理后台](https://blog.csdn.net/Mercuriooo/article/details/104332117)
+4. [火车抢票系统的实现(四)页面级高并发秒杀优化](https://blog.csdn.net/Mercuriooo/article/details/104332117)
+5. [火车抢票系统的实现(五)服务级高并发秒杀优化](https://blog.csdn.net/Mercuriooo/article/details/104332912)
 
 ## 目录
 ```
